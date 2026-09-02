@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   Velvet Crumb Bakery — Design Tokens (Phase R3 Visual Redesign)
+   Locked brand palette per context/ui-context.md — values must not change.
+   ========================================================================== */
+:root {
+  --bg-base: #FFF8F0;
+  --bg-showcase: #141414;
+  --bg-surface: #FFFFFF;
+  --text-primary: #1B1F3B;
+  --text-muted: #6B6B6B;
+  --accent-primary: #F0791A;
+  --accent-secondary: #C9A24B;
+  --border-default: #E8DCCB;
+  --state-error: #D14343;
+  --state-success: #3F9142;
+
+  /* Font fallbacks; the real values are injected as CSS custom properties
+     by next/font in app/layout.tsx (Playfair Display / Jost). */
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Jost', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Signature motif: the piped-icing squiggle used as an underline/divider
+     throughout the storefront (logo, section headers, dividers). */
+  --icing-stroke: var(--accent-primary);
+}
+
+* {
+  border-color: var(--border-default);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--text-primary);
+  background-color: var(--bg-base);
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+/* Tailwind's built-in font-serif / font-sans utilities are re-pointed at the
+   brand typefaces here (tailwind.config.* is a forbidden file for this
+   redesign, so the override lives in globals.css, after @tailwind utilities
+   so it wins on source order at equal specificity). */
+.font-serif {
+  font-family: var(--font-display);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* Consistent, visible keyboard focus across the storefront. */
+:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+::selection {
+  background-color: var(--accent-primary);
+  color: #fff;
+}
+
+/* ==========================================================================
+   Signature motif — hand-piped icing squiggle
+   Used as an animated underline beneath the wordmark and as a section
+   divider. Draws itself in once on mount/scroll-into-view, then rests.
+   ========================================================================== */
+@keyframes icing-draw {
+  from { stroke-dashoffset: 160; }
+  to { stroke-dashoffset: 0; }
+}
+
+.icing-underline {
+  stroke-dasharray: 160;
+  stroke-dashoffset: 160;
+  animation: icing-draw 1s cubic-bezier(0.65, 0, 0.35, 1) 0.15s forwards;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes shimmer-gold {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+
+.animate-shimmer-gold {
+  animation: shimmer-gold 2.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icing-underline,
+  .animate-fade-up,
+  .animate-shimmer-gold {
+    animation: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Subtle grain on dark "showcase" surfaces so large flat #141414 fields
+   don't read as flat vector fills. */
+.bg-showcase-grain {
+  position: relative;
+}
+.bg-showcase-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+/* Reusable small-caps eyebrow label used above section headings. */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-secondary);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}

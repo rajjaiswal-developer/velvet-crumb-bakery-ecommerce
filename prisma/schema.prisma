@@ -1,0 +1,215 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum CategoryType {
+  CAKE
+  CELEBRATION
+}
+
+enum OrderStatus {
+  ORDER_RECEIVED
+  PROCESSING
+  PACKAGING
+  OUT_FOR_DELIVERY
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  CANCELLED
+  EXPIRED
+}
+
+enum NotificationStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+model Category {
+  id        String       @id @default(uuid())
+  name      String
+  slug      String       @unique
+  type      CategoryType
+  parentId  String?
+  parent    Category?    @relation("CategoryToSubcategory", fields: [parentId], references: [id], onDelete: Restrict)
+  children  Category[]   @relation("CategoryToSubcategory")
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  products  Product[]
+
+  @@index([parentId])
+}
+
+model Flavor {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  products  Product[]
+}
+
+model Product {
+  id              String    @id @default(uuid())
+  name            String
+  slug            String
+  categoryId      String
+  category        Category  @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  description     String    @db.Text
+  images          Json      @default("[]")
+  flavorId        String?
+  flavor          Flavor?   @relation(fields: [flavorId], references: [id], onDelete: SetNull)
+  isActive        Boolean   @default(true)
+  isDeleted       Boolean   @default(false)
+  isFeatured      Boolean   @default(false)
+  seoTitle        String?
+  metaDescription String?   @db.Text
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  variants        Variant[]
+
+  @@index([slug])
+  @@index([categoryId, isDeleted, isActive])
+  @@index([isFeatured, isDeleted, isActive])
+  @@index([flavorId])
+  @@index([createdAt])
+}
+
+model Variant {
+  id               String   @id @default(uuid())
+  productId        String
+  product          Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  label            String
+  price            Decimal  @db.Decimal(10, 2)
+  stockQuantity    Int      @default(0)
+  reservedQuantity Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([productId])
+}
+
+model Order {
+  id                  String               @id @default(uuid())
+  receiptNumber       String               @unique
+  customerName        String
+  customerMobile      String
+  alternatePhone      String?
+  customerEmail       String?
+  shippingAddress     String               @db.Text
+  deliveryTimeSlot    String?
+  specialInstructions String?              @db.Text
+  items               Json                 @default("[]")
+  totalAmount         Decimal              @db.Decimal(10, 2)
+  orderStatus         OrderStatus?
+  paymentStatus       PaymentStatus        @default(PENDING)
+  reservationExpiry   DateTime?
+  razorpayOrderId     String?              @unique
+  razorpayPaymentId   String?              @unique
+  history             OrderStatusHistory[]
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+
+  @@index([paymentStatus, createdAt])
+  @@index([createdAt])
+  @@index([customerMobile])
+  @@index([alternatePhone])
+  @@index([customerEmail])
+  @@index([reservationExpiry])
+}
+
+model OrderStatusHistory {
+  id        String      @id @default(uuid())
+  orderId   String
+  order     Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  status    OrderStatus
+  changedAt DateTime    @default(now())
+}
+
+model Admin {
+  id           String     @id @default(uuid())
+  email        String     @unique
+  passwordHash String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  auditLogs    AuditLog[]
+}
+
+model ShopSettings {
+  id               String   @id @default("singleton")
+  isOpen           Boolean  @default(true)
+  openingHours     String   @default("10:00 AM - 10:00 PM")
+  contactEmail     String   @default("admin@velvetcrumbdemo.com")
+  whatsappNumber   String   @default("9999900000")
+  deliveryRadiusKm Float    @default(5.0)
+  businessName     String   @default("Velvet Crumb Bakery")
+  businessAddress  String   @default("12 Baker's Lane, Demo City")
+  shopLatitude     Float?
+  shopLongitude    Float?
+  socialLinks      Json     @default("{}")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model NotificationTemplate {
+  id        String   @id @default(uuid())
+  key       String   @unique
+  subject   String
+  body      String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  adminId   String?
+  admin     Admin?   @relation(fields: [adminId], references: [id], onDelete: SetNull)
+  action    String
+  details   Json     @default("{}")
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model NotificationOutbox {
+  id        String             @id @default(uuid())
+  type      String
+  recipient String
+  payload   Json
+  status    NotificationStatus @default(PENDING)
+  attempts  Int                @default(0)
+  lastError String?            @db.Text
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  @@index([status, createdAt])
+}
+
+model LoginAttempt {
+  id        String   @id @default(uuid())
+  key       String
+  createdAt DateTime @default(now())
+
+  @@index([key, createdAt])
+}
+
+model ServiceableArea {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([isActive])
+}
+

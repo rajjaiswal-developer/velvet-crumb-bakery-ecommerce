@@ -1,0 +1,272 @@
+{
+  "exportedAt": "2026-07-23T08:55:04.509Z",
+  "totalProducts": 6,
+  "products": [
+    {
+      "id": "c3315225-e6eb-413e-8894-c38855635681",
+      "name": "Butterscotch Chocolate Cake",
+      "slug": "butterscotch-chocolate-cake",
+      "categoryId": "bbf98341-8a9b-4870-8de1-61e3971ead65",
+      "description": "Pure Cake",
+      "images": [],
+      "flavor": "Chocolate Truffle",
+      "isActive": false,
+      "isDeleted": true,
+      "isFeatured": false,
+      "seoTitle": null,
+      "metaDescription": null,
+      "createdAt": "2026-07-23T06:53:14.024Z",
+      "updatedAt": "2026-07-23T06:55:04.718Z",
+      "variants": [
+        {
+          "id": "b2a7ee66-6d1c-415e-9573-f3940cbdb3b2",
+          "productId": "c3315225-e6eb-413e-8894-c38855635681",
+          "label": "500g",
+          "price": "500",
+          "stockQuantity": 10,
+          "reservedQuantity": 0,
+          "createdAt": "2026-07-23T06:53:14.024Z",
+          "updatedAt": "2026-07-23T06:53:14.024Z"
+        }
+      ],
+      "category": {
+        "id": "bbf98341-8a9b-4870-8de1-61e3971ead65",
+        "name": "Occasion Cakes",
+        "slug": "occasion-cakes",
+        "type": "CAKE",
+        "parentId": "bdf3f197-8828-4a8a-8959-746ddc983d22",
+        "createdAt": "2026-07-22T20:37:02.760Z",
+        "updatedAt": "2026-07-22T20:37:02.760Z"
+      }
+    },
+    {
+      "id": "444e7ba6-d274-4f4c-a5de-b06e00b235a2",
+      "name": "Butterscotch Chocolate Cake",
+      "slug": "butterscotch-chocolate",
+      "categoryId": "bbf98341-8a9b-4870-8de1-61e3971ead65",
+      "description": "Pure Cake",
+      "images": [],
+      "flavor": "Chocolate Truffle",
+      "isActive": true,
+      "isDeleted": false,
+      "isFeatured": true,
+      "seoTitle": null,
+      "metaDescription": null,
+      "createdAt": "2026-07-23T07:08:58.066Z",
+      "updatedAt": "2026-07-23T07:08:58.066Z",
+      "variants": [
+        {
+          "id": "a7731f6a-b6bf-425a-afb9-9863121fe808",
+          "productId": "444e7ba6-d274-4f4c-a5de-b06e00b235a2",
+          "label": "500g",
+          "price": "500",
+          "stockQuantity": 10,
+          "reservedQuantity": 0,
+          "createdAt": "2026-07-23T07:08:58.066Z",
+          "updatedAt": "2026-07-23T07:08:58.066Z"
+        },
+        {
+          "id": "a1ec9f5d-ce03-4657-b789-05de2a3c4f10",
+          "productId": "444e7ba6-d274-4f4c-a5de-b06e00b235a2",
+          "label": "1kg",
+          "price": "1000",
+          "stockQuantity": 3,
+          "reservedQuantity": 0,
+          "createdAt": "2026-07-23T07:08:58.066Z",
+          "updatedAt": "2026-07-23T07:08:58.066Z"
+        }
+      ],
+      "category": {
+        "id": "bbf98341-8a9b-4870-8de1-61e3971ead65",
+        "name": "Occasion Cakes",
+        "slug": "occasion-cakes",
+        "type": "CAKE",
+        "parentId": "bdf3f197-8828-4a8a-8959-746ddc983d22",
+        "createdAt": "2026-07-22T20:37:02.760Z",
+        "updatedAt": "2026-07-22T20:37:02.760Z"
+      }
+    },
+    {
+      "id": "f4411ba2-8e0c-455a-ba73-fd96cff8301f",
+      "name": "Belgian Chocolate Truffle Cake",
+      "slug": "belgian-chocolate-truffle-cake",
+      "categoryId": "b38c4b8f-b75b-459c-822c-205350568ebe",
+      "description": "Rich 100% eggless dark Belgian chocolate truffle cake crafted fresh in Demo City.",
+      "images": [
+        "https://ik.imagekit.io/by3es5jcax/products/belgian-truffle.jpg"
+      ],
+      "flavor": "Chocolate Truffle",
+      "isActive": true,
+      "isDeleted": false,
+      "isFeatured": true,
+      "seoTitle": null,
+      "metaDescription": null,
+      "createdAt": "2026-07-22T20:37:16.765Z",
+      "updatedAt": "2026-07-22T20:37:16.765Z",
+      "variants": [
+        {
+          "id": "d1b3feb0-55d4-438e-bebd-1883b688d8ed",
+          "productId": "f4411ba2-8e0c-455a-ba73-fd96cff8301f",
+          "label": "500g",
+          "price": "550",
+          "stockQuantity": 15,
+          "reservedQuantity": 0,
+          "createdAt": "2026-07-22T20:37:16.765Z",
+          "updatedAt": "2026-07-22T20:37:16.765Z"
+        },
+        {
+          "id": "8424274e-b304-47a2-82ee-1b86c7711921",
+          "productId": "f4411ba2-8e0c-455a-ba73-fd96cff8301f",
+          "label": "1kg",
+          "price": "990",
+          "stockQuantity": 10,
+          "reservedQuantity": 0,
+          "createdAt": "2026-07-22T20:37:16.765Z",
+          "updatedAt": "2026-07-22T20:37:16.765Z"
+        },
+        {
+          "id": "fb370fd6-2b68-4ff3-8003-88788999faa9",
+          "productId": "f4411ba2-8e0c-455a-ba73-fd96cff8301f",
+          "label": "2kg",
+          "price": "1850",
+          "stockQuantity": 5,
+          "reservedQuantity": 0,
+          "createdAt": "2026-07-22T20:37:16.765Z",
+          "updatedAt": "2026-07-22T20:37:16.765Z"
+        }
+      ],
+      "category": {
+        "id": "b38c4b8f-b75b-459c-822c-205350568ebe",
+        "name": "Birthday Cakes",
+        "slug": "birthday-cakes",
+        "type": "CAKE",
+        "parentId": "bdf3f197-8828-4a8a-8959-746ddc983d22",
+        "createdAt": "2026-07-22T20:37:00.649Z",
+        "updatedAt": "2026-07-22T20:37:00.649Z"
+      }
+    },
+    {
+      "id": "517a675a-1b62-4ee7-9dd9-bd37239c957a",
+      "name": "Royal Red Velvet Heart Cake",
+      "slug": "royal-red-velvet-heart-cake",
+      "categoryId": "bf805917-2697-40b1-b08e-b96c1ee7b0e2",
+      "description": "Velvety cream cheese layers in heart shape, 100% pure vegetarian.",
+      "images": [
+        "https://ik.imagekit.io/by3es5jcax/products/red-velvet-heart.jpg"
+      ],
+      "flavor": "Red Velvet",
+      "isActive": true,
+      "isDeleted": false,
+      "isFeatured": false,
+      "seoTitle": null,
+      "metaDescription": null,
+      "createdAt": "2026-07-22T20:37:19.111Z",
+      "updatedAt": "2026-07-22T20:37:19.111Z",
+      "variants": [
+        {
+          "id": "f1a890e2-cb35-44b9-b620-9b692093e26a",
+          "productId": "517a675a-1b62-4ee7-9dd9-bd37239c957a",
+          "label": "500g",
+          "price": "650",
+          "stockQuantity": 12,
+          "reservedQuantity": 0,
+          "createdAt": "2026-07-22T20:37:19.111Z",
+          "updatedAt": "2026-07-23T08:41:39.225Z"
+        },
+        {
+          "id": "e3138808-7802-46b6-811f-b0fe60d4299e",
+          "productId": "517a675a-1b62-4ee7-9dd9-bd37239c957a",
+          "label": "1kg",
+          "price": "1150",
+          "stockQuantity": 8,
+          "reservedQuantity": 0,
+          "createdAt": "2026-07-22T20:37:19.111Z",
+          "updatedAt": "2026-07-22T20:37:19.111Z"
+        }
+      ],
+      "category": {
+        "id": "bf805917-2697-40b1-b08e-b96c1ee7b0e2",
+        "name": "Anniversary Cakes",
+        "slug": "anniversary-cakes",
+        "type": "CAKE",
+        "parentId": "bdf3f197-8828-4a8a-8959-746ddc983d22",
+        "createdAt": "2026-07-22T20:37:01.705Z",
+        "updatedAt": "2026-07-22T20:37:01.705Z"
+      }
+    },
+    {
+      "id": "b88256d6-6042-420b-9148-626e642706ac",
+      "name": "Fix01 Test Cake",
+      "slug": "fix01-test-cake-1784749138440",
+      "categoryId": "b38c4b8f-b75b-459c-822c-205350568ebe",
+      "description": "Test cake for inventory reservation verification",
+      "images": [],
+      "flavor": null,
+      "isActive": false,
+      "isDeleted": true,
+      "isFeatured": false,
+      "seoTitle": null,
+      "metaDescription": null,
+      "createdAt": "2026-07-22T19:38:58.448Z",
+      "updatedAt": "2026-07-23T06:29:12.826Z",
+      "variants": [
+        {
+          "id": "907ea1ce-af43-4755-b9ae-1d0b7b5d0384",
+          "productId": "b88256d6-6042-420b-9148-626e642706ac",
+          "label": "500g Test",
+          "price": "500",
+          "stockQuantity": 10,
+          "reservedQuantity": 0,
+          "createdAt": "2026-07-22T19:38:58.448Z",
+          "updatedAt": "2026-07-22T20:40:11.378Z"
+        }
+      ],
+      "category": {
+        "id": "b38c4b8f-b75b-459c-822c-205350568ebe",
+        "name": "Birthday Cakes",
+        "slug": "birthday-cakes",
+        "type": "CAKE",
+        "parentId": "bdf3f197-8828-4a8a-8959-746ddc983d22",
+        "createdAt": "2026-07-22T20:37:00.649Z",
+        "updatedAt": "2026-07-22T20:37:00.649Z"
+      }
+    },
+    {
+      "id": "63e559b0-8b37-4480-ae03-b9c982ea0ede",
+      "name": "Fix01 Test Cake",
+      "slug": "fix01-test-cake-1784749753017",
+      "categoryId": "b38c4b8f-b75b-459c-822c-205350568ebe",
+      "description": "Test cake for inventory reservation verification",
+      "images": [],
+      "flavor": null,
+      "isActive": false,
+      "isDeleted": true,
+      "isFeatured": false,
+      "seoTitle": null,
+      "metaDescription": null,
+      "createdAt": "2026-07-22T19:49:13.023Z",
+      "updatedAt": "2026-07-23T06:29:27.520Z",
+      "variants": [
+        {
+          "id": "8311b237-0929-455e-927e-07bcba7dcb73",
+          "productId": "63e559b0-8b37-4480-ae03-b9c982ea0ede",
+          "label": "500g Test",
+          "price": "500",
+          "stockQuantity": 8,
+          "reservedQuantity": 4,
+          "createdAt": "2026-07-22T19:49:13.023Z",
+          "updatedAt": "2026-07-22T19:50:21.591Z"
+        }
+      ],
+      "category": {
+        "id": "b38c4b8f-b75b-459c-822c-205350568ebe",
+        "name": "Birthday Cakes",
+        "slug": "birthday-cakes",
+        "type": "CAKE",
+        "parentId": "bdf3f197-8828-4a8a-8959-746ddc983d22",
+        "createdAt": "2026-07-22T20:37:00.649Z",
+        "updatedAt": "2026-07-22T20:37:00.649Z"
+      }
+    }
+  ]
+}

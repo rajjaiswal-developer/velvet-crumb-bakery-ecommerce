@@ -1,0 +1,375 @@
+[
+  {
+    "id": "f4411ba2-8e0c-455a-ba73-fd96cff8301f",
+    "name": "Belgian Chocolate Truffle Cake",
+    "slug": "belgian-chocolate-truffle-cake",
+    "categoryId": "b38c4b8f-b75b-459c-822c-205350568ebe",
+    "description": "Rich 100% eggless dark Belgian chocolate truffle cake crafted fresh in Demo City.",
+    "images": [
+      {
+        "url": "https://ik.imagekit.io/by3es5jcax/products/belgian-truffle.jpg"
+      }
+    ],
+    "flavor": "Chocolate Truffle",
+    "isActive": false,
+    "isDeleted": true,
+    "isFeatured": true,
+    "seoTitle": null,
+    "metaDescription": null,
+    "createdAt": "2026-07-22T20:37:16.765Z",
+    "updatedAt": "2026-07-23T10:05:26.507Z",
+    "variants": [
+      {
+        "id": "d1b3feb0-55d4-438e-bebd-1883b688d8ed",
+        "productId": "f4411ba2-8e0c-455a-ba73-fd96cff8301f",
+        "label": "500g",
+        "price": "550",
+        "stockQuantity": 15,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-22T20:37:16.765Z",
+        "updatedAt": "2026-07-22T20:37:16.765Z"
+      },
+      {
+        "id": "8424274e-b304-47a2-82ee-1b86c7711921",
+        "productId": "f4411ba2-8e0c-455a-ba73-fd96cff8301f",
+        "label": "1kg",
+        "price": "990",
+        "stockQuantity": 10,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-22T20:37:16.765Z",
+        "updatedAt": "2026-07-22T20:37:16.765Z"
+      },
+      {
+        "id": "fb370fd6-2b68-4ff3-8003-88788999faa9",
+        "productId": "f4411ba2-8e0c-455a-ba73-fd96cff8301f",
+        "label": "2kg",
+        "price": "1850",
+        "stockQuantity": 5,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-22T20:37:16.765Z",
+        "updatedAt": "2026-07-22T20:37:16.765Z"
+      }
+    ],
+    "category": {
+      "id": "b38c4b8f-b75b-459c-822c-205350568ebe",
+      "name": "Birthday Cakes",
+      "slug": "birthday-cakes",
+      "type": "CAKE",
+      "parentId": "bdf3f197-8828-4a8a-8959-746ddc983d22",
+      "createdAt": "2026-07-22T20:37:00.649Z",
+      "updatedAt": "2026-07-22T20:37:00.649Z"
+    }
+  },
+  {
+    "id": "517a675a-1b62-4ee7-9dd9-bd37239c957a",
+    "name": "Royal Red Velvet Heart Cake",
+    "slug": "royal-red-velvet-heart-cake",
+    "categoryId": "bf805917-2697-40b1-b08e-b96c1ee7b0e2",
+    "description": "Velvety cream cheese layers in heart shape, 100% pure vegetarian. (Verified Fix-09) (Verified Fix-09) (Verified Fix-09)",
+    "images": [
+      {
+        "url": "https://ik.imagekit.io/by3es5jcax/products/fix09-test-p4.jpg",
+        "fileId": "fix09_file_4"
+      }
+    ],
+    "flavor": "Red Velvet",
+    "isActive": true,
+    "isDeleted": false,
+    "isFeatured": false,
+    "seoTitle": null,
+    "metaDescription": null,
+    "createdAt": "2026-07-22T20:37:19.111Z",
+    "updatedAt": "2026-07-23T19:14:19.901Z",
+    "variants": [
+      {
+        "id": "f1a890e2-cb35-44b9-b620-9b692093e26a",
+        "productId": "517a675a-1b62-4ee7-9dd9-bd37239c957a",
+        "label": "500g",
+        "price": "650",
+        "stockQuantity": 12,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-22T20:37:19.111Z",
+        "updatedAt": "2026-07-23T19:14:19.089Z"
+      },
+      {
+        "id": "e3138808-7802-46b6-811f-b0fe60d4299e",
+        "productId": "517a675a-1b62-4ee7-9dd9-bd37239c957a",
+        "label": "1kg",
+        "price": "1150",
+        "stockQuantity": 8,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-22T20:37:19.111Z",
+        "updatedAt": "2026-07-23T19:14:19.495Z"
+      }
+    ],
+    "category": {
+      "id": "bf805917-2697-40b1-b08e-b96c1ee7b0e2",
+      "name": "Anniversary Cakes",
+      "slug": "anniversary-cakes",
+      "type": "CAKE",
+      "parentId": "bdf3f197-8828-4a8a-8959-746ddc983d22",
+      "createdAt": "2026-07-22T20:37:01.705Z",
+      "updatedAt": "2026-07-22T20:37:01.705Z"
+    }
+  },
+  {
+    "id": "a88c5305-34a7-44ba-9c9d-11a4647c4654",
+    "name": "Belgian Chocolate Truffle Cake",
+    "slug": "belgian-chocolate-truffle-cake",
+    "categoryId": "b38c4b8f-b75b-459c-822c-205350568ebe",
+    "description": "Rich 100% eggless dark Belgian chocolate truffle cake crafted fresh in Demo City. (Verified Fix-09) (Verified Fix-09) (Verified Fix-09)",
+    "images": [
+      {
+        "url": "https://ik.imagekit.io/by3es5jcax/products/fix09-test-p5.jpg",
+        "fileId": "fix09_file_5"
+      }
+    ],
+    "flavor": "Chocolate Truffle",
+    "isActive": true,
+    "isDeleted": false,
+    "isFeatured": false,
+    "seoTitle": null,
+    "metaDescription": null,
+    "createdAt": "2026-07-23T10:13:37.680Z",
+    "updatedAt": "2026-07-23T19:14:23.568Z",
+    "variants": [
+      {
+        "id": "02b35e72-d09c-4737-8913-ca3258d1a770",
+        "productId": "a88c5305-34a7-44ba-9c9d-11a4647c4654",
+        "label": "500g",
+        "price": "500",
+        "stockQuantity": 10,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-23T10:13:37.680Z",
+        "updatedAt": "2026-07-23T19:14:22.350Z"
+      },
+      {
+        "id": "70cbd2a4-b178-4052-967a-f341a84d22f9",
+        "productId": "a88c5305-34a7-44ba-9c9d-11a4647c4654",
+        "label": "1kg",
+        "price": "900",
+        "stockQuantity": 5,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-23T10:13:37.680Z",
+        "updatedAt": "2026-07-23T19:14:22.756Z"
+      },
+      {
+        "id": "1d02e8ab-3a38-428e-949d-e483b3938416",
+        "productId": "a88c5305-34a7-44ba-9c9d-11a4647c4654",
+        "label": "1.5kg",
+        "price": "1300",
+        "stockQuantity": 5,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-23T10:13:37.680Z",
+        "updatedAt": "2026-07-23T19:14:23.161Z"
+      }
+    ],
+    "category": {
+      "id": "b38c4b8f-b75b-459c-822c-205350568ebe",
+      "name": "Birthday Cakes",
+      "slug": "birthday-cakes",
+      "type": "CAKE",
+      "parentId": "bdf3f197-8828-4a8a-8959-746ddc983d22",
+      "createdAt": "2026-07-22T20:37:00.649Z",
+      "updatedAt": "2026-07-22T20:37:00.649Z"
+    }
+  },
+  {
+    "id": "57497354-4925-44b0-a0d7-91ff12d5f1a7",
+    "name": "Fix06 Test Cake",
+    "slug": "fix06-test-cake-1784833682359",
+    "categoryId": "b38c4b8f-b75b-459c-822c-205350568ebe",
+    "description": "Updated description during fix-06 verification.",
+    "images": [
+      {
+        "url": "https://ik.imagekit.io/by3es5jcax/products/fix06-updated-image.jpg",
+        "fileId": "fix06_updated_file_id_456"
+      }
+    ],
+    "flavor": "Chocolate",
+    "isActive": false,
+    "isDeleted": true,
+    "isFeatured": false,
+    "seoTitle": null,
+    "metaDescription": null,
+    "createdAt": "2026-07-23T19:08:02.362Z",
+    "updatedAt": "2026-07-23T19:32:05.314Z",
+    "variants": [
+      {
+        "id": "86778668-fba4-47e1-878d-63295257e4c5",
+        "productId": "57497354-4925-44b0-a0d7-91ff12d5f1a7",
+        "label": "1kg",
+        "price": "850",
+        "stockQuantity": 5,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-23T19:08:02.362Z",
+        "updatedAt": "2026-07-23T19:08:02.362Z"
+      },
+      {
+        "id": "ed440dce-a2e7-45cf-9ffe-7a8f3f8a89fa",
+        "productId": "57497354-4925-44b0-a0d7-91ff12d5f1a7",
+        "label": "500g",
+        "price": "450",
+        "stockQuantity": 15,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-23T19:08:02.362Z",
+        "updatedAt": "2026-07-23T19:08:05.519Z"
+      }
+    ],
+    "category": {
+      "id": "b38c4b8f-b75b-459c-822c-205350568ebe",
+      "name": "Birthday Cakes",
+      "slug": "birthday-cakes",
+      "type": "CAKE",
+      "parentId": "bdf3f197-8828-4a8a-8959-746ddc983d22",
+      "createdAt": "2026-07-22T20:37:00.649Z",
+      "updatedAt": "2026-07-22T20:37:00.649Z"
+    }
+  },
+  {
+    "id": "00dac3fa-494e-460f-86e4-fccb94651bd0",
+    "name": "Black Forest",
+    "slug": "black-forest",
+    "categoryId": "b38c4b8f-b75b-459c-822c-205350568ebe",
+    "description": " A German specialty featuring chocolate sponge layers soaked in cherry syrup, layered with whipped cream and cherries. (Verified Fix-09) (Verified Fix-09) (Verified Fix-09)",
+    "images": [
+      {
+        "url": "https://ik.imagekit.io/by3es5jcax/products/fix09-test-p1.jpg",
+        "fileId": "fix09_file_1"
+      }
+    ],
+    "flavor": "Black Forest",
+    "isActive": true,
+    "isDeleted": false,
+    "isFeatured": false,
+    "seoTitle": null,
+    "metaDescription": null,
+    "createdAt": "2026-07-23T10:04:40.775Z",
+    "updatedAt": "2026-07-23T19:14:10.497Z",
+    "variants": [
+      {
+        "id": "8726d5ff-3b1f-4700-bd8e-e04af494b689",
+        "productId": "00dac3fa-494e-460f-86e4-fccb94651bd0",
+        "label": "500g",
+        "price": "699",
+        "stockQuantity": 5,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-23T10:04:40.775Z",
+        "updatedAt": "2026-07-23T19:14:09.678Z"
+      },
+      {
+        "id": "c4f5d551-e0f7-4074-b851-28fdd3f45f12",
+        "productId": "00dac3fa-494e-460f-86e4-fccb94651bd0",
+        "label": "1kg",
+        "price": "1299",
+        "stockQuantity": 5,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-23T10:04:40.775Z",
+        "updatedAt": "2026-07-23T19:14:10.087Z"
+      }
+    ],
+    "category": {
+      "id": "b38c4b8f-b75b-459c-822c-205350568ebe",
+      "name": "Birthday Cakes",
+      "slug": "birthday-cakes",
+      "type": "CAKE",
+      "parentId": "bdf3f197-8828-4a8a-8959-746ddc983d22",
+      "createdAt": "2026-07-22T20:37:00.649Z",
+      "updatedAt": "2026-07-22T20:37:00.649Z"
+    }
+  },
+  {
+    "id": "395ecc4f-9b07-47a9-8717-ee15fc1b499a",
+    "name": "Bouquet",
+    "slug": "bouquet",
+    "categoryId": "daf3a8cf-c746-4741-90a6-51a8a73b5f37",
+    "description": "Fresh Flower Bouquet. (Verified Fix-09) (Verified Fix-09) (Verified Fix-09)",
+    "images": [
+      {
+        "url": "https://ik.imagekit.io/by3es5jcax/products/fix09-test-p2.jpg",
+        "fileId": "fix09_file_2"
+      }
+    ],
+    "flavor": null,
+    "isActive": true,
+    "isDeleted": false,
+    "isFeatured": true,
+    "seoTitle": null,
+    "metaDescription": null,
+    "createdAt": "2026-07-23T10:10:36.580Z",
+    "updatedAt": "2026-07-23T19:14:13.182Z",
+    "variants": [
+      {
+        "id": "e8c3bcc6-a155-4c6f-ace9-0a87f530c4b0",
+        "productId": "395ecc4f-9b07-47a9-8717-ee15fc1b499a",
+        "label": "20 flower's",
+        "price": "199",
+        "stockQuantity": 10,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-23T10:10:36.580Z",
+        "updatedAt": "2026-07-23T19:14:12.742Z"
+      }
+    ],
+    "category": {
+      "id": "daf3a8cf-c746-4741-90a6-51a8a73b5f37",
+      "name": "Bouquets & Flowers",
+      "slug": "bouquets-flowers",
+      "type": "CELEBRATION",
+      "parentId": "f740d801-4774-459e-9735-e2d1b597ad83",
+      "createdAt": "2026-07-22T20:37:04.879Z",
+      "updatedAt": "2026-07-22T20:37:04.879Z"
+    }
+  },
+  {
+    "id": "444e7ba6-d274-4f4c-a5de-b06e00b235a2",
+    "name": "Butterscotch Chocolate Cake",
+    "slug": "butterscotch-chocolate",
+    "categoryId": "bbf98341-8a9b-4870-8de1-61e3971ead65",
+    "description": "Pure Cake (Verified Fix-09) (Verified Fix-09) (Verified Fix-09)",
+    "images": [
+      {
+        "url": "https://ik.imagekit.io/by3es5jcax/products/fix09-test-p3.jpg",
+        "fileId": "fix09_file_3"
+      }
+    ],
+    "flavor": "Chocolate Truffle",
+    "isActive": true,
+    "isDeleted": false,
+    "isFeatured": true,
+    "seoTitle": null,
+    "metaDescription": null,
+    "createdAt": "2026-07-23T07:08:58.066Z",
+    "updatedAt": "2026-07-23T19:14:16.242Z",
+    "variants": [
+      {
+        "id": "a7731f6a-b6bf-425a-afb9-9863121fe808",
+        "productId": "444e7ba6-d274-4f4c-a5de-b06e00b235a2",
+        "label": "500g",
+        "price": "500",
+        "stockQuantity": 10,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-23T07:08:58.066Z",
+        "updatedAt": "2026-07-23T19:14:15.424Z"
+      },
+      {
+        "id": "a1ec9f5d-ce03-4657-b789-05de2a3c4f10",
+        "productId": "444e7ba6-d274-4f4c-a5de-b06e00b235a2",
+        "label": "1kg",
+        "price": "1000",
+        "stockQuantity": 3,
+        "reservedQuantity": 0,
+        "createdAt": "2026-07-23T07:08:58.066Z",
+        "updatedAt": "2026-07-23T19:14:15.833Z"
+      }
+    ],
+    "category": {
+      "id": "bbf98341-8a9b-4870-8de1-61e3971ead65",
+      "name": "Occasion Cakes",
+      "slug": "occasion-cakes",
+      "type": "CAKE",
+      "parentId": "bdf3f197-8828-4a8a-8959-746ddc983d22",
+      "createdAt": "2026-07-22T20:37:02.760Z",
+      "updatedAt": "2026-07-22T20:37:02.760Z"
+    }
+  }
+]

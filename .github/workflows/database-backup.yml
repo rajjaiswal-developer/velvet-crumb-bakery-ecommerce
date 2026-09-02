@@ -1,0 +1,48 @@
+name: Daily PostgreSQL Database Backup (Neon -> Backblaze B2)
+
+on:
+  schedule:
+    # Run daily at 02:00 UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  backup-database:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install PostgreSQL Client & B2 CLI
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install -y postgresql-client python3-pip
+          pip3 install b2 --break-system-packages || pip3 install b2
+
+      - name: Perform Database Dump (pg_dump)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          TIMESTAMP=$(date +'%Y%m%d_%H%M%S')
+          BACKUP_FILE="velvet_crumb_db_${TIMESTAMP}.sql.gz"
+          echo "Starting pg_dump backup for Velvet Crumb Bakery DB at ${TIMESTAMP}..."
+          pg_dump "$DATABASE_URL" | gzip > "$BACKUP_FILE"
+          echo "Database dump complete. Backup file size:"
+          du -h "$BACKUP_FILE"
+          echo "BACKUP_FILE=$BACKUP_FILE" >> $GITHUB_ENV
+
+      - name: Upload Backup to Backblaze B2
+        env:
+          B2_APPLICATION_KEY_ID: ${{ secrets.B2_APPLICATION_KEY_ID }}
+          B2_APPLICATION_KEY: ${{ secrets.B2_APPLICATION_KEY }}
+          B2_BUCKET_NAME: ${{ secrets.B2_BUCKET_NAME || 'velvet-crumb-bakery-backups' }}
+        run: |
+          if [ -z "$B2_APPLICATION_KEY_ID" ] || [ -z "$B2_APPLICATION_KEY" ]; then
+            echo "::warning:: Backblaze B2 secrets are not configured. Skipping upload step."
+            exit 0
+          fi
+          echo "Authenticating with Backblaze B2..."
+          b2 authorize-account "$B2_APPLICATION_KEY_ID" "$B2_APPLICATION_KEY"
+          echo "Uploading $BACKUP_FILE to B2 bucket $B2_BUCKET_NAME..."
+          b2 upload-file "$B2_BUCKET_NAME" "$BACKUP_FILE" "backups/$BACKUP_FILE"
+          echo "✅ Backup successfully uploaded to Backblaze B2!"
