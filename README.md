@@ -95,8 +95,8 @@ A modern, full-stack e-commerce and storefront management application built for 
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/amore-cakes-portfolio-demo.git
-cd amore-cakes-portfolio-demo
+git clone https://github.com/your-username/velvet-crumb-bakery-ecommerce.git
+cd velvet-crumb-bakery-ecommerce
 ```
 
 ### 2. Install Dependencies
