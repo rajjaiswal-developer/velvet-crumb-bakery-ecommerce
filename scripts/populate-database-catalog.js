@@ -1,74 +1,10 @@
-import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
-
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-async function geocodeShopAddress(address: string): Promise<{ lat: number; lng: number }> {
-  const apiKey = process.env.GOOGLE_MAPS_API_KEY;
-  if (apiKey && apiKey !== 'mock-google-maps-api-key') {
-    try {
-      const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(
-        address
-      )}&key=${apiKey}`;
-      const res = await fetch(url);
-      const data = await res.json();
-      if (data.status === 'OK' && data.results?.[0]?.geometry?.location) {
-        const { lat, lng } = data.results[0].geometry.location;
-        return { lat, lng };
-      }
-    } catch (err) {
-      console.warn('Geocoding API call during seed failed, using default coordinates:', err);
-    }
-  }
-  return { lat: 19.0760, lng: 72.8777 };
-}
+async function run() {
+  console.log('🚀 Starting Database Product Catalog Population & Cleanup...');
 
-async function main() {
-  console.log('🌱 Seeding database...');
-
-  // Admin User
-  const adminEmail = process.env.ADMIN_EMAIL;
-  const adminPassword = process.env.ADMIN_PASSWORD;
-
-  if (!adminEmail || !adminPassword) {
-    throw new Error(
-      'Missing ADMIN_EMAIL or ADMIN_PASSWORD in environment variables. Please configure them in .env before running database seed.'
-    );
-  }
-
-  const passwordHash = await bcrypt.hash(adminPassword, 12);
-
-  const admin = await prisma.admin.upsert({
-    where: { email: adminEmail },
-    update: { passwordHash },
-    create: { email: adminEmail, passwordHash },
-  });
-  console.log(`Admin initialized: ${admin.email}`);
-
-  // Shop Settings
-  const fullAddress = '12 Bakers Lane, Demo City, Maharashtra 400086, India';
-  const { lat, lng } = await geocodeShopAddress(fullAddress);
-
-  const shopSettings = await prisma.shopSettings.upsert({
-    where: { id: 'singleton' },
-    update: { shopLatitude: lat, shopLongitude: lng },
-    create: {
-      id: 'singleton',
-      isOpen: true,
-      openingHours: '10:00 AM - 10:00 PM',
-      contactEmail: adminEmail,
-      whatsappNumber: '9999900000',
-      deliveryRadiusKm: 5.0,
-      businessName: 'Velvet Crumb Bakery',
-      businessAddress: '12 Bakers Lane, Demo City',
-      shopLatitude: lat,
-      shopLongitude: lng,
-      socialLinks: {},
-    },
-  });
-  console.log(`Shop settings initialized: ${shopSettings.businessName}`);
-
-  // 1. Top-Level Categories
+  // 1. Ensure Top-Level Categories & Subcategories
   const topCakes = await prisma.category.upsert({
     where: { slug: 'cakes' },
     update: { name: 'Cakes', type: 'CAKE', parentId: null },
@@ -81,7 +17,6 @@ async function main() {
     create: { name: 'Celebration Products', slug: 'celebration', type: 'CELEBRATION', parentId: null },
   });
 
-  // 2. Subcategories
   const subcategoriesData = [
     { name: 'Birthday Cakes', slug: 'birthday-cakes', type: 'CAKE', parentId: topCakes.id },
     { name: 'Anniversary Cakes', slug: 'anniversary-cakes', type: 'CAKE', parentId: topCakes.id },
@@ -91,18 +26,19 @@ async function main() {
     { name: 'Gifts & Hampers', slug: 'gifts-hampers', type: 'CELEBRATION', parentId: topCelebration.id },
   ];
 
-  const subcategoryMap = new Map<string, string>();
+  const subcategoryMap = new Map();
   for (const sub of subcategoriesData) {
     const cat = await prisma.category.upsert({
       where: { slug: sub.slug },
-      update: { name: sub.name, type: sub.type as any, parentId: sub.parentId },
-      create: { name: sub.name, slug: sub.slug, type: sub.type as any, parentId: sub.parentId },
+      update: { name: sub.name, type: sub.type, parentId: sub.parentId },
+      create: { name: sub.name, slug: sub.slug, type: sub.type, parentId: sub.parentId },
     });
     subcategoryMap.set(sub.slug, cat.id);
   }
-  console.log('Categories & Subcategories seeded.');
 
-  // 3. Flavors
+  console.log('✅ Categories & Subcategories verified (6 subcategories).');
+
+  // 2. Ensure Flavors
   const flavorList = [
     'Chocolate Truffle',
     'Black Forest',
@@ -118,7 +54,7 @@ async function main() {
     'Coffee Opera',
   ];
 
-  const flavorMap = new Map<string, string>();
+  const flavorMap = new Map();
   for (const name of flavorList) {
     const f = await prisma.flavor.upsert({
       where: { name },
@@ -127,21 +63,36 @@ async function main() {
     });
     flavorMap.set(name, f.id);
   }
-  console.log('Flavors seeded.');
 
-  // 4. Cleanup Test/Placeholder Products
-  const removeSlugs = ['invoice-test-cake-1785302407569', 'invoice-test-cake-1785046630169', 'cake-1'];
+  console.log('✅ Flavors verified (12 flavors).');
+
+  // 3. Remove Test / Placeholder Products
+  const removeSlugs = [
+    'invoice-test-cake-1785302407569',
+    'invoice-test-cake-1785046630169',
+    'cake-1',
+  ];
+
   for (const slug of removeSlugs) {
     const prods = await prisma.product.findMany({ where: { slug } });
     for (const p of prods) {
       await prisma.variant.deleteMany({ where: { productId: p.id } });
       await prisma.product.delete({ where: { id: p.id } });
+      console.log(`🗑️ Removed placeholder product: ${p.name} (${slug})`);
     }
   }
 
-  // 5. Product Catalog
+  // Also clean up soft-deleted products
+  const deletedProds = await prisma.product.findMany({ where: { isDeleted: true } });
+  for (const p of deletedProds) {
+    await prisma.variant.deleteMany({ where: { productId: p.id } });
+    await prisma.product.delete({ where: { id: p.id } });
+    console.log(`🗑️ Removed soft-deleted product: ${p.name} (${p.id})`);
+  }
+
+  // 4. Products Master Data (25 Realistic Products)
   const catalog = [
-    // BIRTHDAY CAKES
+    // BIRTHDAY CAKES (7 products)
     {
       name: 'Signature Belgian Dark Chocolate Truffle Cake',
       slug: 'belgian-chocolate-truffle-cake',
@@ -249,7 +200,7 @@ async function main() {
       ],
     },
 
-    // ANNIVERSARY CAKES
+    // ANNIVERSARY CAKES (5 products)
     {
       name: 'Royal Red Velvet Heart Cake',
       slug: 'royal-red-velvet-heart-cake',
@@ -326,7 +277,7 @@ async function main() {
       ],
     },
 
-    // OCCASION CAKES
+    // OCCASION CAKES (4 products)
     {
       name: 'Ferrero Rocher Golden Fudge Cake',
       slug: 'ferrero-rocher-golden-fudge-cake',
@@ -388,7 +339,7 @@ async function main() {
       ],
     },
 
-    // DESIGNER CAKES
+    // DESIGNER CAKES (4 products)
     {
       name: 'Elegant Floral Fondant Tier Cake',
       slug: 'elegant-floral-fondant-tier-cake',
@@ -450,7 +401,7 @@ async function main() {
       ],
     },
 
-    // BOUQUETS & FLOWERS
+    // BOUQUETS & FLOWERS (3 products)
     {
       name: 'Royal Velvet Red Rose Bouquet',
       slug: 'bouquet',
@@ -497,7 +448,7 @@ async function main() {
       ],
     },
 
-    // GIFTS & HAMPERS
+    // GIFTS & HAMPERS (2 products)
     {
       name: 'Luxury Belgian Truffles & Candle Gift Box',
       slug: 'luxury-belgian-truffles-candle-gift-box',
@@ -530,15 +481,23 @@ async function main() {
     },
   ];
 
+  let addedCount = 0;
+  let updatedCount = 0;
+
   for (const item of catalog) {
     const categoryId = subcategoryMap.get(item.categorySlug);
-    if (!categoryId) continue;
+    if (!categoryId) {
+      throw new Error(`Category slug not found: ${item.categorySlug}`);
+    }
 
     const flavorId = item.flavorName ? flavorMap.get(item.flavorName) || null : null;
+
     const existing = await prisma.product.findFirst({ where: { slug: item.slug } });
 
     if (existing) {
+      // Delete old variants to re-insert clean ones
       await prisma.variant.deleteMany({ where: { productId: existing.id } });
+
       await prisma.product.update({
         where: { id: existing.id },
         data: {
@@ -552,9 +511,13 @@ async function main() {
           isFeatured: item.isFeatured,
           seoTitle: item.seoTitle,
           metaDescription: item.metaDescription,
-          variants: { create: item.variants },
+          variants: {
+            create: item.variants,
+          },
         },
       });
+      updatedCount++;
+      console.log(`✏️ Updated product: ${item.name} (${item.slug})`);
     } else {
       await prisma.product.create({
         data: {
@@ -569,45 +532,28 @@ async function main() {
           isFeatured: item.isFeatured,
           seoTitle: item.seoTitle,
           metaDescription: item.metaDescription,
-          variants: { create: item.variants },
+          variants: {
+            create: item.variants,
+          },
         },
       });
+      addedCount++;
+      console.log(`✨ Added new product: ${item.name} (${item.slug})`);
     }
   }
-  console.log('Product catalog seeded successfully (25 products).');
 
-  // Serviceable Areas
-  const initialLocalities = [
-    'Demo City',
-    'Demo City East',
-    'Vidyavihar West',
-    'Vidyavihar East',
-    'Vikhroli West',
-    'Vikhroli East',
-    'Kurla East',
-    'Asalpha',
-    'Pant Nagar',
-    'Rajawadi',
-    'Garodia Nagar',
-    'Chembur',
-    'Powai',
-  ];
+  const totalProducts = await prisma.product.count({ where: { isDeleted: false, isActive: true } });
 
-  for (const name of initialLocalities) {
-    await prisma.serviceableArea.upsert({
-      where: { name },
-      update: {},
-      create: { name, isActive: true },
-    });
-  }
-  console.log('Serviceable areas seeded.');
+  console.log('\n================ SUMMARY ================');
+  console.log(`Updated Existing Products: ${updatedCount}`);
+  console.log(`Added New Products: ${addedCount}`);
+  console.log(`Total Active Products in Database: ${totalProducts}`);
+  console.log('=========================================\n');
+
+  await prisma.$disconnect();
 }
 
-main()
-  .catch((e) => {
-    console.error('Seeding failed:', e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+run().catch((err) => {
+  console.error('❌ Error executing database script:', err);
+  process.exit(1);
+});

@@ -296,9 +296,13 @@ export default function AdminDashboardPage() {
   return (
     <div className="min-h-screen bg-[var(--bg-base)] p-6">
       <header className="flex items-center justify-between border-b border-[var(--border-default)] pb-4 mb-6">
-        <div>
-          <h1 className="font-serif text-2xl font-bold text-[var(--text-primary)]">Velvet Crumb Bakery Admin</h1>
-          <p className="text-xs text-[var(--text-muted)]">Logged in as {adminEmail}</p>
+        <div className="flex items-center gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/logo-master.png" alt="Velvet Crumb Bakery Logo" className="h-12 w-auto object-contain" />
+          <div>
+            <h1 className="font-serif text-2xl font-bold text-[var(--text-primary)]">Velvet Crumb Bakery Admin</h1>
+            <p className="text-xs text-[var(--text-muted)]">Logged in as {adminEmail}</p>
+          </div>
         </div>
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2 text-xs bg-[var(--bg-surface)] px-3 py-1.5 rounded-xl border border-[var(--border-default)]">

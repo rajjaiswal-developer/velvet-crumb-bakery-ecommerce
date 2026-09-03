@@ -59,7 +59,7 @@ export default function OrderTrackingClient() {
                 id="track-receipt"
                 type="text"
                 required
-                placeholder="e.g. CK202607220001"
+                placeholder="e.g. CK-1785050611182-001"
                 value={receiptNumber}
                 onChange={(e) => setReceiptNumber(e.target.value)}
                 className="w-full px-3 py-2.5 bg-[var(--bg-base)] border border-[var(--border-default)] rounded-xl text-xs text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)]"
@@ -137,22 +137,20 @@ export default function OrderTrackingClient() {
                   return (
                     <div
                       key={stage.key}
-                      className={`flex flex-col items-center text-center p-3 rounded-2xl border transition-all ${
-                        isCurrent
-                          ? 'bg-[var(--bg-base)] border-[var(--accent-primary)] shadow-md'
-                          : isCompleted
+                      className={`flex flex-col items-center text-center p-3 rounded-2xl border transition-all ${isCurrent
+                        ? 'bg-[var(--bg-base)] border-[var(--accent-primary)] shadow-md'
+                        : isCompleted
                           ? 'bg-[var(--state-success)]/5 border-[var(--state-success)]/30 text-[var(--state-success)]'
                           : 'bg-gray-50 border-gray-100 opacity-50'
-                      }`}
+                        }`}
                     >
                       <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 ${
-                          isCurrent
-                            ? 'bg-[var(--accent-primary)] text-white shadow'
-                            : isCompleted
+                        className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 ${isCurrent
+                          ? 'bg-[var(--accent-primary)] text-white shadow'
+                          : isCompleted
                             ? 'bg-[var(--state-success)] text-white'
                             : 'bg-gray-200 text-gray-400'
-                        }`}
+                          }`}
                       >
                         <Icon className="h-5 w-5" />
                       </div>

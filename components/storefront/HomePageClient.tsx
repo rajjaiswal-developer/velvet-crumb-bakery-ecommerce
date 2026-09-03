@@ -24,17 +24,20 @@ import {
 // Demo carousel slides — replace `image` with final photography URLs when ready.
 const HERO_BANNER_SLIDES = [
   {
-    image: 'https://ik.imagekit.io/by3es5jcax/products/Silder%201.png',
+    //https://ik.imagekit.io/by3es5jcax/products/Silder%201.png
+    image: 'https://ik.imagekit.io/by3es5jcax/products/Sli3.png',
     title: 'Freshly Baked, Every Single Day',
     subtitle: 'Our ovens start at dawn so your cake arrives warm with love.',
   },
   {
-    image: 'https://ik.imagekit.io/by3es5jcax/products/Slider%202-1.png',
+    //https://ik.imagekit.io/by3es5jcax/products/Slider%202-1.png
+    image: 'https://ik.imagekit.io/by3es5jcax/products/Sli4.png',
     title: 'Custom Cakes for Every Celebration',
     subtitle: 'Tell us your theme — we\u2019ll design the rest, eggless and delicious.',
   },
   {
-    image: 'https://ik.imagekit.io/by3es5jcax/products/Silder%203.png',
+    //https://ik.imagekit.io/by3es5jcax/products/Silder%203.png
+    image: 'https://ik.imagekit.io/by3es5jcax/products/Sli2.png',
     title: 'Celebration Products, Delivered Fast',
     subtitle: 'Balloons, candles, and party décor within a 5 km radius.',
   },
@@ -143,7 +146,7 @@ function AboutUsSection() {
           <div className="aspect-[4/5] rounded-2xl overflow-hidden border border-[#E8DCCB] shadow-md">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="https://ik.imagekit.io/by3es5jcax/products/Silder%201.png"
+              src="https://ik.imagekit.io/by3es5jcax/products/S1.png"
               alt="Velvet Crumb Bakery bakery team at work"
               className="w-full h-full object-cover"
             />

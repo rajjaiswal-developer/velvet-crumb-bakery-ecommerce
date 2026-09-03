@@ -66,18 +66,16 @@ export default function Navbar({ cartItemCount = 0, onOpenCart }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-[4.5rem] gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group shrink-0">
+          <Link href="/" className="flex items-center gap-3 group shrink-0">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/logo-master.png"
               alt="Velvet Crumb Bakery Logo"
-              width={40}
-              height={40}
-              className="h-10 w-auto object-contain transition-transform duration-300 group-hover:-rotate-3"
+              className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
-            <div>
+            <div className="hidden sm:block">
               <div className="flex items-center gap-1.5">
-                <span className="font-serif text-xl font-bold text-[var(--text-primary)] tracking-tight">
+                <span className="font-serif text-lg font-bold text-[var(--text-primary)] tracking-tight">
                   Velvet Crumb Bakery
                 </span>
                 <span

@@ -20,7 +20,7 @@ async function runLiveTest() {
 
   // 1. Log in as Admin
   console.log('1. Logging in as Admin (admin@velvetcrumbdemo.com)...');
-  const loginPayload = JSON.stringify({ email: 'admin@velvetcrumbdemo.com', password: 'AdminVelvet#2026!' });
+  const loginPayload = JSON.stringify({ email: process.env.ADMIN_EMAIL || 'admin@velvetcrumbdemo.com', password: process.env.ADMIN_PASSWORD || '' });
   const loginRes = await makeRequest(
     {
       hostname: 'localhost',

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import LoadingOverlay from '@/components/admin/LoadingOverlay';
 import { useAdminLogin } from '@/lib/hooks/useAdminLogin';
 import { useAutoScrollToNotification } from '@/lib/hooks/useAutoScrollToNotification';
-import { ShieldCheck, Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,8 +25,9 @@ export default function AdminLoginPage() {
       <LoadingOverlay isLoading={loading} message="Authenticating credentials..." className="w-full max-w-md">
         <div className="bg-[var(--bg-surface)] p-8 rounded-2xl shadow-2xl border border-[var(--border-default)]">
           <div className="text-center mb-6">
-            <div className="w-12 h-12 rounded-xl bg-[var(--bg-base)] border border-[var(--border-default)] flex items-center justify-center text-[var(--accent-primary)] mx-auto mb-3">
-              <ShieldCheck className="h-6 w-6" />
+            <div className="flex items-center justify-center mb-3">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/logo-master.png" alt="Velvet Crumb Bakery Logo" className="h-16 w-auto object-contain" />
             </div>
             <h1 className="font-serif text-2xl font-bold text-[var(--text-primary)]">Velvet Crumb Bakery Admin</h1>
             <p className="text-sm text-[var(--text-muted)]">Sign in to access the shop control panel</p>
@@ -50,7 +51,7 @@ export default function AdminLoginPage() {
                 disabled={loading}
                 required
                 className="w-full px-3 py-2 bg-[var(--bg-base)] border border-[var(--border-default)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] text-[var(--text-primary)] disabled:opacity-60"
-                placeholder="admin@velvetcrumbdemo.com"
+                placeholder="username"
               />
             </div>
 

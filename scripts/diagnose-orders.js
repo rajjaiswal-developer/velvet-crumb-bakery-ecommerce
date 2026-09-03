@@ -74,7 +74,7 @@ async function diagnose() {
 
   // 2. Admin Login & API Latency Measurement
   console.log('\n--- API RESPONSE LATENCY MEASUREMENT ---');
-  const loginPayload = JSON.stringify({ email: 'admin@velvetcrumbdemo.com', password: 'AdminVelvet#2026!' });
+  const loginPayload = JSON.stringify({ email: process.env.ADMIN_EMAIL || 'admin@velvetcrumbdemo.com', password: process.env.ADMIN_PASSWORD || '' });
   const loginRes = await makeHttpRequest('/api/admin/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

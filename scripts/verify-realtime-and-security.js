@@ -90,7 +90,7 @@ async function runSecurityAndRealtimeAudit() {
     const loginRes = await makeHttpRequest('/api/admin/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: 'admin@velvetcrumbdemo.com', password: 'AdminVelvet#2026!' }),
+      body: JSON.stringify({ email: process.env.ADMIN_EMAIL || 'admin@velvetcrumbdemo.com', password: process.env.ADMIN_PASSWORD || '' }),
     });
 
     console.log(`[RAW RESPONSE LOG] Login HTTP Status Code: ${loginRes.status}`);

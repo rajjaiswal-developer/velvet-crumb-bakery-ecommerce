@@ -10,11 +10,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
           {/* Brand Info */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2.5">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo-master.png" alt="Velvet Crumb Bakery" className="h-10 w-auto object-contain" />
+            <div className="flex items-center gap-3">
+              <div className="bg-white/95 p-1.5 rounded-xl shadow-md border border-white/20">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/logo-master.png" alt="Velvet Crumb Bakery" className="h-10 w-auto object-contain" />
+              </div>
               <div>
-                <span className="font-serif text-xl font-bold text-white block">Velvet Crumb Bakery</span>
+                <span className="font-serif text-lg font-bold text-white block">Velvet Crumb Bakery</span>
                 <svg viewBox="0 0 120 8" className="w-24 h-1.5" aria-hidden="true">
                   <path
                     d="M2 5 C 16 1, 28 7, 42 4 S 70 1, 84 5 S 108 7, 118 3"

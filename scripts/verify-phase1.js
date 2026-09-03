@@ -14,7 +14,8 @@ async function runVerification() {
   if (!admin) {
     throw new Error('FAILED: Seeded admin user not found');
   }
-  const isBcryptValid = await bcrypt.compare('AdminVelvet#2026!', admin.passwordHash);
+  const adminPassword = process.env.ADMIN_PASSWORD || '';
+  const isBcryptValid = await bcrypt.compare(adminPassword, admin.passwordHash);
   if (!isBcryptValid) {
     throw new Error('FAILED: Admin bcrypt password check failed');
   }
