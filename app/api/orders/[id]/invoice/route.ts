@@ -5,6 +5,7 @@ import { getAdminSession } from '@/lib/auth/session';
 import { generateOrderInvoicePdf } from '@/lib/invoices/pdf';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
 
 export async function GET(
   request: NextRequest,

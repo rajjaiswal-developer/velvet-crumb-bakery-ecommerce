@@ -14,6 +14,9 @@ const cspHeader = `
 `.replace(/\s{2,}/g, ' ').trim();
 
 const nextConfig = {
+  experimental: {
+    serverComponentsExternalPackages: ['pdfkit'],
+  },
   async headers() {
     return [
       {
