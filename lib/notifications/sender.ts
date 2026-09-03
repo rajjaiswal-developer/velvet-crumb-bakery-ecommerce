@@ -7,7 +7,7 @@ export interface SendEmailPayload {
 
 export async function sendEmailViaBrevo(payload: SendEmailPayload): Promise<{ success: boolean; messageId?: string; error?: string }> {
   const apiKey = process.env.BREVO_API_KEY;
-  const senderEmail = process.env.BREVO_SENDER_EMAIL || 'nexxtgencreative@gmail.com';
+  const senderEmail = process.env.BREVO_SENDER_EMAIL || 'hello@velvetcrumbdemo.com';
   const senderName = process.env.BREVO_SENDER_NAME || 'Velvet Crumb Bakery';
 
   if (!apiKey || apiKey === 'mockBrevoApiKey' || apiKey === 'your_brevo_api_key_here') {

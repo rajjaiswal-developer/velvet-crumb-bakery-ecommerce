@@ -51,7 +51,7 @@ export default function AdminLoginPage() {
                 disabled={loading}
                 required
                 className="w-full px-3 py-2 bg-[var(--bg-base)] border border-[var(--border-default)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] text-[var(--text-primary)] disabled:opacity-60"
-                placeholder="username"
+                placeholder="username@example.com"
               />
             </div>
 

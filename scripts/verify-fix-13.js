@@ -29,13 +29,13 @@ async function runVerification() {
   // 2. Create Genuinely New Test Order & Trigger Outbox Pipeline
   console.log('2. Creating genuinely new test order to verify end-to-end outbox pipeline...');
   const testReceipt = `FIX13-${Date.now().toString().slice(-6)}`;
-  const testEmail = 'abhishek105013@gmail.com';
+  const testEmail = 'test@example.com';
 
   const newOrder = await prisma.order.create({
     data: {
       receiptNumber: testReceipt,
-      customerName: 'Dhruv (Fix 13 E2E Test)',
-      customerMobile: '9082105013',
+      customerName: 'Test Customer (Fix 13 E2E Test)',
+      customerMobile: '9999900000',
       customerEmail: testEmail,
       shippingAddress: 'Sunder Baug, NSS Road, Asalpha, 12 Bakers Lane, Demo City',
       deliveryTimeSlot: 'Within 2 Hours',
