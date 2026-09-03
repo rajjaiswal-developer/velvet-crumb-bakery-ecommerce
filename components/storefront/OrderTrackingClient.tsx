@@ -1,13 +1,19 @@
 'use client';
 
+import { useState } from 'react';
 import Navbar from '@/components/storefront/Navbar';
 import Footer from '@/components/storefront/Footer';
 import Breadcrumbs from '@/components/storefront/Breadcrumbs';
+import CartDrawer from '@/components/storefront/CartDrawer';
+import { useCart } from '@/lib/hooks/useCart';
 import { useOrderTracking } from '@/lib/hooks/useOrderTracking';
 import { useAutoScrollToNotification } from '@/lib/hooks/useAutoScrollToNotification';
 import { Search, MapPin, ShoppingBag, AlertCircle } from 'lucide-react';
 
 export default function OrderTrackingClient() {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { cart, handleUpdateQuantity, handleRemoveItem } = useCart();
+
   const {
     receiptNumber,
     setReceiptNumber,
@@ -24,7 +30,7 @@ export default function OrderTrackingClient() {
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg-base)]">
-      <Navbar />
+      <Navbar cartItemCount={cart.itemCount} onOpenCart={() => setIsCartOpen(true)} />
 
       <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 py-8 w-full">
         <Breadcrumbs items={[{ label: 'Track Order', url: '/orders/track' }]} />
@@ -188,6 +194,13 @@ export default function OrderTrackingClient() {
       </main>
 
       <Footer />
+      <CartDrawer
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        cart={cart}
+        onUpdateQuantity={handleUpdateQuantity}
+        onRemoveItem={handleRemoveItem}
+      />
     </div>
   );
 }

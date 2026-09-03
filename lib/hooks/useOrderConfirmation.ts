@@ -68,7 +68,7 @@ export function useOrderConfirmation(receiptNumber: string) {
     loadOrder(0);
   }, [loadOrder]);
 
-  const invoiceUrl = order ? `/api/orders/${order.id}/invoice` : '';
+  const invoiceUrl = order ? `/api/orders/${order.id}/invoice?phone=${encodeURIComponent(order.customerMobile)}` : '';
   const whatsappUrl = order
     ? `https://wa.me/919999900000?text=${encodeURIComponent(
         `Hi Velvet Crumb Bakery, I have confirmed order receipt #${order.receiptNumber}.`

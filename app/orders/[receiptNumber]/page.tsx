@@ -1,9 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import Navbar from '@/components/storefront/Navbar';
 import Footer from '@/components/storefront/Footer';
-import { CheckCircle2, MapPin, Phone, ShieldCheck, ShoppingBag, Cake, Download, ArrowRight } from 'lucide-react';
+import CartDrawer from '@/components/storefront/CartDrawer';
+import { useCart } from '@/lib/hooks/useCart';
+import { CheckCircle2, MapPin, Phone, ShieldCheck, ShoppingBag, Cake, Download, ArrowRight, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
 import PaymentProcessingOverlay from '@/components/storefront/PaymentProcessingOverlay';
@@ -13,11 +16,40 @@ export default function OrderConfirmationPage() {
   const params = useParams();
   const receiptNumber = params?.receiptNumber as string;
 
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
+  const { cart, handleUpdateQuantity, handleRemoveItem } = useCart();
+
   const { order, loading, invoiceUrl, loadOrder } = useOrderConfirmation(receiptNumber);
+
+  const handleDownloadPdf = async () => {
+    if (!invoiceUrl || isDownloadingPdf) return;
+    setIsDownloadingPdf(true);
+    try {
+      const response = await fetch(invoiceUrl);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch PDF: ${response.status}`);
+      }
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = `Invoice-${order?.receiptNumber || 'Order'}.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
+    } catch (err) {
+      console.error('Error downloading invoice PDF:', err);
+      window.open(invoiceUrl, '_blank');
+    } finally {
+      setIsDownloadingPdf(false);
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FFF8F0]">
-      <Navbar />
+      <Navbar cartItemCount={cart.itemCount} onOpenCart={() => setIsCartOpen(true)} />
 
       <main className="flex-1 max-w-3xl mx-auto px-4 sm:px-6 py-12 w-full">
         <PaymentProcessingOverlay isVisible={loading} />
@@ -82,14 +114,19 @@ export default function OrderConfirmationPage() {
                 <p className="font-bold">Need a physical copy for your records?</p>
                 <p className="text-[#6B6B6B] text-[11px]">Download your itemized GST tax invoice below.</p>
               </div>
-              <a
-                href={invoiceUrl}
-                download={`Invoice-${order.receiptNumber}.pdf`}
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#F0791A] hover:bg-[#d6650f] text-white font-bold px-5 py-2.5 rounded-xl text-xs transition-all shadow-md flex-shrink-0"
+              <button
+                type="button"
+                onClick={handleDownloadPdf}
+                disabled={isDownloadingPdf}
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#F0791A] hover:bg-[#d6650f] text-white font-bold px-5 py-2.5 rounded-xl text-xs transition-all shadow-md flex-shrink-0 disabled:opacity-60"
               >
-                <Download className="h-4 w-4" />
-                Download PDF Invoice
-              </a>
+                {isDownloadingPdf ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <Download className="h-4 w-4" />
+                )}
+                {isDownloadingPdf ? 'Generating PDF...' : 'Download PDF Invoice'}
+              </button>
             </div>
 
             {/* Customer & Delivery Summary */}
@@ -171,6 +208,13 @@ export default function OrderConfirmationPage() {
       </main>
 
       <Footer />
+      <CartDrawer
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        cart={cart}
+        onUpdateQuantity={handleUpdateQuantity}
+        onRemoveItem={handleRemoveItem}
+      />
     </div>
   );
 }

@@ -1,8 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import Navbar from '@/components/storefront/Navbar';
 import Footer from '@/components/storefront/Footer';
 import Breadcrumbs from '@/components/storefront/Breadcrumbs';
+import CartDrawer from '@/components/storefront/CartDrawer';
+import { useCart } from '@/lib/hooks/useCart';
 import { MessageCircle, Sparkles, ShieldCheck, Camera, Palette, Gift, Info } from 'lucide-react';
 
 const THEME_CAKES_LIST = [
@@ -60,13 +63,16 @@ const THEME_CAKES_LIST = [
 ];
 
 export default function CustomCakesClient() {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { cart, handleUpdateQuantity, handleRemoveItem } = useCart();
+
   const whatsappUrl = `https://wa.me/919999900000?text=${encodeURIComponent(
     'Hi Velvet Crumb Bakery, I would like to inquire about ordering a custom cake!'
   )}`;
 
   return (
     <div className="min-h-screen flex flex-col bg-[var(--bg-base)]">
-      <Navbar />
+      <Navbar cartItemCount={cart.itemCount} onOpenCart={() => setIsCartOpen(true)} />
 
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
         <Breadcrumbs items={[{ label: 'Custom Cakes', url: '/custom-cakes' }]} />
@@ -212,6 +218,13 @@ export default function CustomCakesClient() {
       </main>
 
       <Footer />
+      <CartDrawer
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        cart={cart}
+        onUpdateQuantity={handleUpdateQuantity}
+        onRemoveItem={handleRemoveItem}
+      />
     </div>
   );
 }

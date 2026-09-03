@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import Navbar from '@/components/storefront/Navbar';
-import Footer from '@/components/storefront/Footer';
+import LegalPageLayout from '@/components/storefront/LegalPageLayout';
 
 export const metadata: Metadata = {
   title: 'Terms & Conditions | Velvet Crumb Bakery Demo City',
@@ -12,9 +11,7 @@ export const metadata: Metadata = {
 
 export default function TermsConditionsPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--bg-base)]">
-      <Navbar cartItemCount={0} />
-
+    <LegalPageLayout>
       <main className="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
         <div className="bg-[var(--bg-surface)] p-8 sm:p-12 rounded-2xl border border-[var(--border-default)] shadow-sm space-y-8 text-[var(--text-primary)]">
           <div>
@@ -84,8 +81,6 @@ export default function TermsConditionsPage() {
           </div>
         </div>
       </main>
-
-      <Footer />
-    </div>
+    </LegalPageLayout>
   );
 }
