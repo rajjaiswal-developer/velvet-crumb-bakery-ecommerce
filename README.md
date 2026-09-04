@@ -10,6 +10,12 @@ A modern, full-stack e-commerce and storefront management application built for 
 
 ---
 
+## 🌐 Live Demo
+
+**Live Website:** [https://velvet-crumb-bakery-ecommerce...](https://velvet-crumb-bakery-ecommerce.vercel.app/)
+
+---
+
 ## Key Features
 
 ### 🛍️ Customer Storefront & Catalog
