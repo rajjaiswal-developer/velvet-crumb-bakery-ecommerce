@@ -5,7 +5,7 @@ import { checkRateLimit } from '@/lib/auth/rate-limit';
 export async function POST(request: NextRequest) {
   try {
     const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || '127.0.0.1';
-    const rateCheck = await checkRateLimit(`track_${ip}`);
+    const rateCheck = await checkRateLimit(`track_${ip}`, 25, 15 * 60 * 1000);
 
     if (!rateCheck.success) {
       return NextResponse.json(

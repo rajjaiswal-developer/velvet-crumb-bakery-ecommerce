@@ -3,6 +3,8 @@ import { db } from '@/lib/db/client';
 import { getAdminSession } from '@/lib/auth/session';
 import { createAuditLog } from '@/lib/audit';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     let settings = await db.shopSettings.findUnique({
@@ -68,4 +70,12 @@ export async function PUT(request: NextRequest) {
     const message = error instanceof Error ? error.message : 'Failed to update shop settings';
     return NextResponse.json({ success: false, error: message }, { status: 500 });
   }
+}
+
+export async function POST(request: NextRequest) {
+  return PUT(request);
+}
+
+export async function PATCH(request: NextRequest) {
+  return PUT(request);
 }

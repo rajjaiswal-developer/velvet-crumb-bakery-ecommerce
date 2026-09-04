@@ -33,7 +33,7 @@ export default function Navbar({ cartItemCount = 0, onOpenCart }: NavbarProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    fetch('/api/admin/shop-settings')
+    fetch('/api/shop-settings/public')
       .then((res) => res.json())
       .then((data) => {
         if (data.success && data.data) {
